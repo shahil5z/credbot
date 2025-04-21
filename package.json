@@ -1,0 +1,113 @@
+{
+    "name": "credbot",
+    "displayName": "CredBot",
+    "description": "AI coding assistant for Java, Kotlin, TypeScript, and Spring Boot microservices",
+    "version": "0.0.1",
+    "publisher": "Shahil",
+    "engines": {
+        "vscode": "^1.93.0"
+    },
+    "categories": [
+        "Programming Languages",
+        "Linters",
+        "Snippets",
+        "Other"
+    ],
+    "activationEvents": [
+        "onCommand:credbot.start",
+        "onCommand:credbot.setApiKey"
+    ],
+    "main": "./out/extension.js",
+    "contributes": {
+        "commands": [
+            {
+                "command": "credbot.start",
+                "title": "CredBot: Start AI Assistant",
+                "category": "CredBot"
+            },
+            {
+                "command": "credbot.setApiKey",
+                "title": "CredBot: Set Groq API Key",
+                "category": "CredBot"
+            }
+        ],
+        "menus": {
+            "editor/context": [
+                {
+                    "command": "credbot.start",
+                    "group": "CredBot",
+                    "when": "editorHasSelection"
+                },
+                {
+                    "command": "credbot.setApiKey",
+                    "group": "CredBot"
+                }
+            ],
+            "commandPalette": [
+                {
+                    "command": "credbot.start",
+                    "when": "editorHasSelection"
+                }
+            ]
+        },
+        "configuration": {
+            "title": "CredBot",
+            "properties": {
+                "credbot.groqApiKey": {
+                    "type": "string",
+                    "default": "",
+                    "description": "Groq API Key for AI requests",
+                    "scope": "application"
+                },
+                "credbot.model": {
+                    "type": "string",
+                    "default": "mixtral-8x7b-32768",
+                    "description": "Default AI model to use",
+                    "scope": "application"
+                },
+                "credbot.timeout": {
+                    "type": "number",
+                    "default": 30000,
+                    "description": "API timeout in milliseconds",
+                    "scope": "application"
+                }
+            }
+        }
+    },
+    "scripts": {
+        "vscode:prepublish": "npm run compile",
+        "compile": "tsc -p ./",
+        "watch": "tsc -watch -p ./",
+        "package": "vsce package"
+    },
+    "devDependencies": {
+        "@types/node": "^20.14.12",
+        "@types/vscode": "^1.93.0",
+        "@typescript-eslint/eslint-plugin": "^8.12.2",
+        "@typescript-eslint/parser": "^8.12.2",
+        "@vscode/test-electron": "^2.4.1",
+        "eslint": "^9.14.0",
+        "typescript": "^5.5.4"
+    },
+    "dependencies": {
+        "axios": "^0.27.2",
+        "uuid": "^10.0.0"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/yourusername/credbot.git"
+    },
+    "bugs": {
+        "url": "https://github.com/yourusername/credbot/issues"
+    },
+    "icon": "images/icon.png",
+    "keywords": [
+        "AI",
+        "Code Assistant",
+        "Java",
+        "Kotlin",
+        "TypeScript",
+        "Spring Boot",
+        "Microservices"
+    ]
+}
